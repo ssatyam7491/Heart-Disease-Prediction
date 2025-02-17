@@ -14,8 +14,8 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # loading the saved models
 
-heart_disease_model = pickle.load(open('C:/Users/itsme/Downloads/Heart_Disease/heart_disease_model.sav', 'rb'))
-
+#heart_disease_model = pickle.load(open('C:/Users/itsme/Downloads/Heart_Disease/heart_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open('heart_disease_model.sav', 'rb'))
 
 # sidebar for navigation
 with st.sidebar:
