@@ -1,13 +1,66 @@
-credentials:
-  usernames:
-    doctor1:
-      email: doctor1@example.com
-      name: Dr. John Doe
-      password: '$2b$12$CwTycUXWue0Thq9StjUM0uJ8fXqO8q7.sGRhKQbI6xEGOeCT8aTmq'  # example hashed
-cookie:
-  expiry_days: 30
-  key: some_random_secret_key
-  name: heart_auth_cookie
-preauthorized:
-  emails:
-    - doctor1@example.com
+import streamlit as st
+import yaml
+import bcrypt
+
+# Load user data from config.yaml
+def load_users():
+    try:
+        with open("config.yaml", "r") as file:
+            config = yaml.safe_load(file)
+        return config.get("credentials", {}).get("usernames", {})
+    except FileNotFoundError:
+        return {}
+
+# Verify password using bcrypt
+def check_password(input_password, hashed_password):
+    return bcrypt.checkpw(input_password.encode(), hashed_password.encode())
+
+# Login Page
+def login_page():
+    st.markdown("""
+        <style>
+        .login-box {
+            background-color: #f2f2f2;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            margin-top: 100px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="login-box">', unsafe_allow_html=True)
+
+    st.title("🩺 Doctor Login")
+    username = st.text_input("👨‍⚕️ Username")
+    password = st.text_input("🔒 Password", type="password")
+
+    users = load_users()
+
+    login_btn = st.button("Login")
+
+    if login_btn:
+        if username in users:
+            hashed_pw = users[username]["password"]
+            if check_password(password, hashed_pw):
+                st.success(f"Welcome Dr. {users[username]['name']} 👋")
+                st.session_state.logged_in = True
+                st.session_state.username = username
+            else:
+                st.error("❌ Incorrect password.")
+        else:
+            st.error("❌ Username not found.")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# Run login page
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    login_page()
+else:
+    st.success("✅ You are logged in! Continue to the dashboard.")
