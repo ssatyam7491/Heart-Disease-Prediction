@@ -25,15 +25,11 @@ def login_page():
             margin: auto;
             margin-top: 100px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            text-align: center;
         }
         </style>
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
-
-    # Display image centered
-    st.image("Heart.png", use_column_width=False, width=100)
 
     st.title("🩺 Doctor Login")
     username = st.text_input("👨‍⚕️ Username")
