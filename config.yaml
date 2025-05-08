@@ -1,0 +1,13 @@
+credentials:
+  usernames:
+    doctor1:
+      email: doctor1@example.com
+      name: Dr. John Doe
+      password: '$2b$12$CwTycUXWue0Thq9StjUM0uJ8fXqO8q7.sGRhKQbI6xEGOeCT8aTmq'  # example hashed
+cookie:
+  expiry_days: 30
+  key: some_random_secret_key
+  name: heart_auth_cookie
+preauthorized:
+  emails:
+    - doctor1@example.com
