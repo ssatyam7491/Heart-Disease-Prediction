@@ -19,7 +19,7 @@ def load_user_credentials():
 
 # Sidebar for navigation
 with st.sidebar:
-    selected = option_menu('Disease Prediction System',
+    selected = option_menu('Heart Disease Detection System',
                            ['Login', 'Signup', 'Forgot Password', 'Heart Disease Prediction'],
                            menu_icon='hospital-fill',
                            icons=['key', 'person-add', 'key', 'heart'],
