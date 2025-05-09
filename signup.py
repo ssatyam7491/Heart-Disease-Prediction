@@ -33,12 +33,17 @@ def signup_page():
             width: 100%;
             max-width: 400px;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 30px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
         }
         </style>
     """, unsafe_allow_html=True)
 
+    # Image above the sign-up box
+    st.image("Heart.png", width=120)
+
+    # Sign-up form container
     st.markdown('<div class="signup-box">', unsafe_allow_html=True)
 
     st.title("🩺 Sign Up")
