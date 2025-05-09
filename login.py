@@ -14,6 +14,7 @@ def check_password(input_password, hashed_password):
 
 # Login Page
 def login_page():
+    # Custom CSS styling
     st.markdown("""
         <style>
         .login-box {
@@ -23,12 +24,17 @@ def login_page():
             width: 100%;
             max-width: 400px;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 30px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            text-align: center;
         }
         </style>
     """, unsafe_allow_html=True)
 
+    # Image above the login box
+    st.image("Heart.png", width=120)
+
+    # Login form container
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
 
     st.title("🩺 Doctor Login")
@@ -36,7 +42,6 @@ def login_page():
     password = st.text_input("🔒 Password", type="password")
 
     users = load_users()
-
     login_btn = st.button("Login")
 
     if login_btn:
